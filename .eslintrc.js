@@ -3,14 +3,20 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ["plugin:vue/vue3-essential", "airbnb-base", "prettier"],
+  extends: ['plugin:vue/vue3-essential', 'airbnb-base', 'prettier'],
   overrides: [],
   parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
+    ecmaVersion: 'latest',
+    sourceType: 'module',
   },
-  plugins: ["vue", "prettier"],
+  plugins: ['vue', 'prettier'],
   rules: {
-    "prettier/prettier": "error",
+    'prettier/prettier': 'error',
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
   },
-};
+  settings: {
+    'import/resolver': {
+      alias: [['@', './src']],
+    },
+  },
+}
