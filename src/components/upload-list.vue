@@ -15,11 +15,14 @@ const changeEvent = e => {
   fileList.value = fileList.value.concat(tempList)
 }
 const uploadFile = type => {
+  const fileDom = document.getElementById('file-upload-input')
   if (type === 'file') {
     // 上传文件逻辑
-    const fileDom = document.getElementById('file-upload-input')
-    fileDom.click()
+    fileDom.multiple = true
+  } else {
+    fileDom.webkitdirectory = true
   }
+  fileDom.click()
 }
 onUnmounted(() => {
   const fileDom = document.getElementById('file-upload-input')
@@ -31,8 +34,7 @@ onUnmounted(() => {
     <div class="header">
       <span @click="uploadFile('file')">上传文件</span>
       <span @click="uploadFile('folder')">上传文件夹</span>
-      <input type="file" multiple id="file-upload-input" @change="changeEvent" />
-      <input type="file" webkitdirectory id="folder-upload-input" @change="changeEvent" />
+      <input type="file" id="file-upload-input" @change="changeEvent" />
     </div>
     <div class="list">
       <template v-for="(item, index) in fileList" :key="index">
