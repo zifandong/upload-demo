@@ -1,9 +1,12 @@
 <script setup>
-import useUpload from '@/hooks/use-upload'
+import { useFileStore } from '@/stores/fileList'
 import { onUnmounted } from 'vue'
+import { storeToRefs } from 'pinia'
 import fileItem from './file-item.vue'
 
-const { fileList } = useUpload()
+const fileStore = useFileStore()
+const { fileList } = storeToRefs(fileStore)
+const { setFileList } = fileStore
 
 const changeEvent = e => {
   const { files } = e.target
@@ -12,7 +15,7 @@ const changeEvent = e => {
     return
   }
   const tempList = Array.from(files)
-  fileList.value = fileList.value.concat(tempList)
+  setFileList(fileList.value.concat(tempList))
 }
 const uploadFile = type => {
   const fileDom = document.getElementById('file-upload-input')

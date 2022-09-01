@@ -15,6 +15,7 @@ module.exports = {
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'no-useless-return': 0, // 禁止多余的 return 语句 0：关闭规则
     'no-plusplus': 0, // 禁止使用单目运算符
+    'import/prefer-default-export': 0,
   },
   settings: {
     'import/resolver': {
